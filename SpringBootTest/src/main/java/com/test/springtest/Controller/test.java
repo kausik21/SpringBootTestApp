@@ -1,4 +1,4 @@
 package com.test.springtest.Controller;
 
-public class test {
+public class test    {
 }

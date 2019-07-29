@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author M.Kausik
  */
-@RestController
+@Controller
 public class TestController {
 
     @Autowired
@@ -26,14 +26,14 @@ public class TestController {
 //    }
 
 
-    @RequestMapping(value = "medicine",method = RequestMethod.GET)
+    @RequestMapping(value = "/medicine",method = RequestMethod.GET)
     public ModelAndView getMedicines(Model model){
         List<Medicine> medicines = medService.getMedicine();
         model.addAttribute("medicines",medicines);
         return new ModelAndView("Home");
     }
 
-    @RequestMapping(value = "medicine", method = RequestMethod.POST)
+    @RequestMapping(value = "/medicine", method = RequestMethod.POST)
     public RedirectView addMedicine(@ModelAttribute Medicine medicine){
         medService.addMedicine(medicine);
         return new RedirectView("medicine");
