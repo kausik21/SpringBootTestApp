@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class TestController {
 //    }
 
 
-    @RequestMapping("medicine")
+    @RequestMapping(value = "medicine",method = RequestMethod.GET)
     public ModelAndView getMedicines(Model model){
         List<Medicine> medicines = medService.getMedicine();
         model.addAttribute("medicines",medicines);
@@ -33,8 +34,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "medicine", method = RequestMethod.POST)
-    public String addMedicine(@ModelAttribute Medicine medicine){
+    public RedirectView addMedicine(@ModelAttribute Medicine medicine){
         medService.addMedicine(medicine);
-        return "redirect : Home";
+        return new RedirectView("medicine");
     }
 }
