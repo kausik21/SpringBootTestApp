@@ -19,22 +19,22 @@ public class TestController {
     @Autowired
     MedService medService;
 
-    @GetMapping("medicines")
-    public List<Medicine> getMedicines(){
-        return medService.getMedicine();
+//    @GetMapping("medicines")
+//    public List<Medicine> getMedicines(){
+//        return medService.getMedicine();
+//    }
+
+
+    @RequestMapping("medicine")
+    public ModelAndView getMedicines(Model model){
+        List<Medicine> medicines = medService.getMedicine();
+        model.addAttribute("medicines",medicines);
+        return new ModelAndView("Home");
     }
 
-
-//    @RequestMapping("medicine")
-//    public ModelAndView getMedicines(Model model){
-//        List<Medicine> medicines = medService.getMedicine();
-//        model.addAttribute("medicines",medicines);
-//        return new ModelAndView("Home");
-//    }
-//
-//    @RequestMapping(value = "medicine", method = RequestMethod.POST)
-//    public String addMedicine(@ModelAttribute Medicine medicine){
-//        medService.addMedicine(medicine);
-//        return "redirect : Home";
-//    }
+    @RequestMapping(value = "medicine", method = RequestMethod.POST)
+    public String addMedicine(@ModelAttribute Medicine medicine){
+        medService.addMedicine(medicine);
+        return "redirect : Home";
+    }
 }
