@@ -27,7 +27,7 @@ public class SpringtestApplication {
 //			e.printStackTrace();
 //		}
 		Runtime rt = Runtime.getRuntime();
-		rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:8081");
+		rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:8081/login");
 	}
 
 }

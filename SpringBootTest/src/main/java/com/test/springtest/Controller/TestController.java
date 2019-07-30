@@ -2,6 +2,7 @@ package com.test.springtest.Controller;
 
 import com.test.springtest.Model.Medicine;
 import com.test.springtest.Service.MedService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -37,5 +39,22 @@ public class TestController {
     public RedirectView addMedicine(@ModelAttribute Medicine medicine){
         medService.addMedicine(medicine);
         return new RedirectView("medicine");
+    }
+
+    @RequestMapping(value = "/deleteMedicine", method = RequestMethod.POST)
+    public RedirectView deleteMedicine(Integer medid){
+        medService.deleteMedicine(medid);
+        return new RedirectView("medicine");
+    }
+
+    @RequestMapping("/login")
+    public String loginPage(){
+        return "index.jsp";
+    }
+
+    @RequestMapping("user")
+    @ResponseBody
+    public Principal user(Principal principal){
+        return principal;
     }
 }
