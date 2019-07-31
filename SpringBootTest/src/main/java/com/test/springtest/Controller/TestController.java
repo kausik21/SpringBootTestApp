@@ -42,8 +42,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "/deleteMedicine", method = RequestMethod.POST)
-    public RedirectView deleteMedicine(Integer medid){
-        medService.deleteMedicine(medid);
+    public RedirectView deleteMedicine(@RequestParam(value = "mid") Integer mid){
+        medService.deleteMedicine(mid);
         return new RedirectView("medicine");
     }
 
